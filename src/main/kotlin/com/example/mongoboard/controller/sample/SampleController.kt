@@ -2,7 +2,7 @@ package com.example.mongoboard.controller.sample
 
 import com.example.mongoboard.Constants.API_ENDPOINT
 import com.example.mongoboard.model.sample.Sample
-import com.example.mongoboard.service.sample.SampleService
+import com.example.mongoboard.model.sample.SampleService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping

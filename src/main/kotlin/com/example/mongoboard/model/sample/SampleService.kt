@@ -1,7 +1,5 @@
-package com.example.mongoboard.service.sample
+package com.example.mongoboard.model.sample
 
-import com.example.mongoboard.model.sample.Sample
-import com.example.mongoboard.model.sample.SampleRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
