@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: mongo-board
+      username: mongoBoardAdmin
+      password: ENC(/0VHnKDlp1q2CWEugPCCFjEIWKeZrYtieV5KpkNJJQFMG22tpqzlIHn+CR+jpwZQ)
