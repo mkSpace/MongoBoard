@@ -34,4 +34,14 @@ class BoardController(private val boardService: BoardService) {
     fun deleteBoard(@PathVariable("boardId") boardId: String) {
         boardService.deleteBoard(boardId)
     }
+
+    @PutMapping("/{boardId}/like")
+    fun likeBoard(@PathVariable("boardId") boardId: String, @RequestBody requestBody: BoardLikeRequest): BoardDto {
+        return boardService.likeBoard(boardId, requestBody.userId)
+    }
+
+    @PutMapping("/{boardId}/dislike")
+    fun dislikeBoard(@PathVariable("boardId") boardId: String, @RequestBody requestBody: BoardLikeRequest): BoardDto {
+        return boardService.dislikeBoard(boardId, requestBody.userId)
+    }
 }

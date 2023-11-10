@@ -1,5 +1,6 @@
 package com.example.mongoboard.model.board
 
+import com.example.mongoboard.model.user.UserRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -7,7 +8,10 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 @Transactional(readOnly = true)
-class BoardService(private val boardRepository: BoardRepository) {
+class BoardService(
+    private val boardRepository: BoardRepository,
+    private val userRepository: UserRepository
+) {
 
     companion object {
         private const val DEFAULT_PAGE_SIZE = 20
@@ -40,5 +44,23 @@ class BoardService(private val boardRepository: BoardRepository) {
     fun deleteBoard(id: String) {
         val board = boardRepository.findByIdOrNull(id) ?: throw IllegalStateException()
         boardRepository.delete(board)
+    }
+
+    @Transactional
+    fun likeBoard(id: String, userId: String): BoardDto {
+        val board = boardRepository.findByIdOrNull(id) ?: throw IllegalStateException()
+        val user = userRepository.findByIdOrNull(userId) ?: throw IllegalStateException()
+        board.like(user)
+        boardRepository.save(board)
+        return board.toDto()
+    }
+
+    @Transactional
+    fun dislikeBoard(id: String, userId: String): BoardDto {
+        val board = boardRepository.findByIdOrNull(id) ?: throw IllegalStateException()
+        val user = userRepository.findByIdOrNull(userId) ?: throw IllegalStateException()
+        board.dislike(user)
+        boardRepository.save(board)
+        return board.toDto()
     }
 }
